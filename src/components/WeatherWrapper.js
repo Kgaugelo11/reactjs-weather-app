@@ -1,7 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
+import { useState} from "react";
 import {WiDaySunny, WiCloud, WiRain} from 'weather-icons-react';
 import LocationInput from "./LocationInput";
 import WeatherDisplay from "./WeatherDisplay";
+import "./WeatherWarpper.css";
 
 const getWeatherIcon = (conditionCode) => {
   switch (conditionCode) {
@@ -50,6 +52,9 @@ const WeatherWrapper = () => {
   const [cityName, setCityName] = useState("");
   const [temperature, setTemperature] = useState('');
   const [conditions, setConditions] = useState('');
+  const [wind, setWind] = useState('');
+  const [errorText, setErrorText] = useState("");
+  const [humidity, setHumidity] = useState("");
   const [icon, setIcon] = useState('');
 
   const cityNameHandler = (event) => {
@@ -64,25 +69,38 @@ const WeatherWrapper = () => {
       .then(response => response.json())
       .then(data => {
         setTemperature(data.main.temp);
-        setConditions(data.weather[0].description);
+        setConditions(data.weather[0].description)
         setIcon(getWeatherIcon(data.weather[0].icon));
-        console.log(data.weather[0].description)
+        setHumidity(data.main.humidity);
+        setWind(data.wind.speed);
+        setErrorText("");
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        setErrorText(error);
+      });
   };
 
   return (
-    <form onSubmit={submitHandler}>
-      <div>
-        <LocationInput onChange={cityNameHandler}/>
-      </div>
-      <div>
-        <button type={"submit"}>Get weather</button>
-      </div>
-      <div>
-        <WeatherDisplay icon={icon} temparature={temperature} conditions={conditions}/>
-      </div>
-    </form>
+    <div className={"container"}>
+      <form onSubmit={submitHandler}>
+        <div>
+          <LocationInput onChange={cityNameHandler}/>
+        </div>
+        <div>
+          <button type={"submit"}>Get weather</button>
+        </div>
+        <div>
+          <WeatherDisplay
+            icon={icon}
+            wind={wind}
+            temparature={temperature}
+            conditions={conditions}
+            humidity={humidity}
+            errorText={errorText}
+          />
+        </div>
+      </form>
+    </div>
   )
 }
 
