@@ -1,4 +1,4 @@
-# React Weather App
+# React WeatherWrapper App
 
 A simple ReactJS app that displays the current weather for a given location using the OpenWeatherMap API.
 

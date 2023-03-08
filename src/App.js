@@ -1,7 +1,10 @@
-function App() {
+import React from "react";
+import WeatherWrapper from "./components/WeatherWrapper";
+
+const App = () => {
   return (
     <div>
-      <h1>Weather app</h1>
+      <WeatherWrapper/>
     </div>
   );
 }
