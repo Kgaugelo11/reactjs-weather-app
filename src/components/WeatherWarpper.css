@@ -1,6 +1,18 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    border-style: solid;
+    /*border-color: hsl(89, 43%, 51%);*/
+    width: 100%;
 }
+
+.contain-current-graph {
+    display: flex;
+    /*border: 2px solid #00ff95;*/
+    padding: 1%;
+}
+
+.contain-current-graph_child {
+    flex: 1;
+    border: 2px solid #4800ff;
+    margin: 0.5%;
+}
+

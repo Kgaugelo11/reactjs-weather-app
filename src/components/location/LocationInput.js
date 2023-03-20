@@ -1,13 +1,11 @@
 import React from "react";
+import "./LocationInput.css"
 
 const LocationInput = (props) => {
   return (
-    <div>
+    <div className={"location-input"}>
       <div>
-        <label>Enter location</label>
-      </div>
-      <div>
-        <input placeholder={"enter city name"} onChange={props.onChange}/>
+        <input className={"input-field"} placeholder={"enter city name"} onChange={props.onChange}/>
       </div>
     </div>
   );
