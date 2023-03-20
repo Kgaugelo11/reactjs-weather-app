@@ -1,52 +1,9 @@
 import React from "react";
 import { useState} from "react";
-import {WiDaySunny, WiCloud, WiRain} from 'weather-icons-react';
-import LocationInput from "./LocationInput";
+import LocationInput from "./location/LocationInput";
 import WeatherDisplay from "./WeatherDisplay";
+import WeatherIcon from "./weatherCard/common/WeatherIcon";
 import "./WeatherWarpper.css";
-
-const getWeatherIcon = (conditionCode) => {
-  switch (conditionCode) {
-    case '01d':
-      return <WiDaySunny/>;
-    case '01n':
-      return <WiDaySunny/>;
-    case '02d':
-      return <WiCloud/>;
-    case '02n':
-      return <WiCloud/>;
-    case '03d':
-      return <WiCloud/>;
-    case '03n':
-      return <WiCloud/>;
-    case '04d':
-      return <WiCloud/>;
-    case '04n':
-      return <WiCloud/>;
-    case '09d':
-      return <WiRain/>;
-    case '09n':
-      return <WiRain/>;
-    case '10d':
-      return <WiRain/>;
-    case '10n':
-      return <WiRain/>;
-    case '11d':
-      return <WiRain/>;
-    case '11n':
-      return <WiRain/>;
-    case '13d':
-      return <WiRain/>;
-    case '13n':
-      return <WiRain/>;
-    case '50d':
-      return <WiCloud/>;
-    case '50n':
-      return <WiCloud/>;
-    default:
-      return <WiCloud/>;
-  }
-}
 
 const WeatherWrapper = () => {
   const [cityName, setCityName] = useState("");
@@ -56,29 +13,39 @@ const WeatherWrapper = () => {
   const [errorText, setErrorText] = useState("");
   const [humidity, setHumidity] = useState("");
   const [icon, setIcon] = useState('');
+  const [weather, setWeather] = useState({})
 
-  const cityNameHandler = (event) => {
-    setCityName(event.target.value);
+  const cityNameHandler = () => {
+    setCityName(cityName);
   }
 
   const submitHandler = (event) => {
     event.preventDefault();
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&&appid=01b7b4f97ada9006a27f7aa192d2e0c8`;
+    const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=01b7b4f97ada9006a27f7aa192d2e0c8&q=${cityName}&days=3&aqi=no&alerts=yes`
 
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
         setTemperature(data.main.temp);
         setConditions(data.weather[0].description)
-        setIcon(getWeatherIcon(data.weather[0].icon));
+        setIcon(data.weather[0].description);
         setHumidity(data.main.humidity);
         setWind(data.wind.speed);
         setErrorText("");
+      })
+      .then((data) => {
+        setWeather(data);
       })
       .catch(error => {
         setErrorText(error);
       });
   };
+
+  const w = {
+    icon: weather?.current?.condition?.icon
+  }
+
+  console.log(w.icon)
 
   return (
     <div className={"container"}>
@@ -97,6 +64,9 @@ const WeatherWrapper = () => {
             conditions={conditions}
             humidity={humidity}
             errorText={errorText}
+          />
+          <WeatherIcon
+            condition = {icon}
           />
         </div>
       </form>
