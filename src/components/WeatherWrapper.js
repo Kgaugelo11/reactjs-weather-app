@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import LocationInput from "./location/LocationInput";
 import "./WeatherWrapper.css";
 import CurrentWeatherCard from "./weatherCard/currentWeatherCard/CurrentWeatherCard";
-import WeatherGraph from "./weatherGraph/WeatherGraph";
 import ForecastWeatherWrapper from "./weatherCard/forecastWeatherCard/ForecastWeatherWrapper";
 
 const WeatherWrapper = () => {
@@ -31,6 +30,12 @@ const WeatherWrapper = () => {
     event.preventDefault();
   }
 
+  const capFirstLetter = (location) => {
+    const words = location.split(" ");
+    const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+    return capitalizedWords.join(" ");
+  }
+
   const keyDownHandler = (event) => {
     if (event.key === 'Enter') {
       setLocation((prevState => {
@@ -48,7 +53,7 @@ const WeatherWrapper = () => {
         </div>
         <div className={"container"}>
           <div className={"container-currentWeather"}>
-            <CurrentWeatherCard location={location} weather={weather}/>
+            <CurrentWeatherCard location={capFirstLetter(location)} weather={weather}/>
           </div>
         </div>
         <div className={"container-forecastWeather"}>

@@ -6,7 +6,7 @@ import WeatherIcon from "../common/WeatherIcon";
 const ForecastWeatherCard = (props) => {
   return (
     <div>
-      <h2>Weather forecast component: {props.num}</h2>
+      <h2>Coming soon</h2>
       <Temperature/>
       <WeatherIcon
         condition = {props.condition}

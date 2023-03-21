@@ -37,22 +37,26 @@ const CurrentWeatherCard = (props) => {
     return Math.floor(num);
   }
 
+
   return (
     <div className={"current-weather"}>
       <div>
-        <h2
-          className={"current-weather-temp"}>{roundTemperatureToNearest(props.weather.temperature)}°C</h2>
+        <h2 className={"current-weather-temp"}>{roundTemperatureToNearest(props.weather.temperature)}<sup>°c</sup></h2>
       </div>
       <div>
-        <h2>{props.location}</h2>
-        <h2>{currentDate}</h2>
-        <h2>{currentTime}</h2>
+        <h2 className={"current-location"}>{props.location}</h2>
+        <h2 className={"current-weather-date"}>{currentDate}</h2>
+        <h2 className={"current-weather-date"}>{currentTime}</h2>
       </div>
       <div className={"weather-icon"}>
-        <WeatherIcon
-          condition={props.weather.condition}
-        />
-        <h2 className={"weather-icon-text"}>{props.weather.condition}</h2>
+        <div>
+          <WeatherIcon
+            condition={props.weather.condition}
+          />
+        </div>
+        <div>
+          <h2 className={"weather-icon-text"}>{props.weather.condition}</h2>
+        </div>
       </div>
     </div>
   );

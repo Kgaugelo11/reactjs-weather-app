@@ -12,12 +12,32 @@
 }
 
 .current-weather-temp {
-    font-size: 60px;
+    font-size: 4.5rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.current-weather-date {
+    font-weight: 400;
+    font-size: 1.5rem;
+    width: 250px;
+}
+
+.current-location {
+    font-size: 2.8rem;
+    font-weight: 500;
 }
 
 .weather-icon {
     font-size: 4rem;
     float: right;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.weather-icon > div {
+    flex: 1;
 }
 
 .weather-icon-text {
