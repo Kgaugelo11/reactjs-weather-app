@@ -5,12 +5,12 @@ import "./ForecastWeatherWrapper.css"
 const ForecastWeatherWrapper = () => {
   return (
     <div className={"container"}>
-      <di className={"flex-child"}>
+      <div className={"flex-child"}>
         <ForecastWeatherCard num={"1"}/>
-      </di>
-      <di className={"flex-child"}>
+      </div>
+      <div className={"flex-child"}>
         <ForecastWeatherCard num={"2"}/>
-      </di>
+      </div>
       <div className={"flex-child"}>
         <ForecastWeatherCard num={"3"}/>
       </div>
