@@ -11,53 +11,57 @@ import {
   faCloudRain,
   faCloudShowersHeavy,
   faSnowflake,
-  faIcicles
+  faIcicles,
+  faThunderstorm,
 } from '@fortawesome/free-solid-svg-icons'
 
 const getWeatherIcon = (condition) => {
   let icon;
   switch (condition) {
-    case "Clear":
-      icon = faCloud;
-      break;
-    case "Sunny":
+    case "clear sky":
       icon = faSun;
       break;
-    case "Mist":
+    case "sunny":
+      icon = faSun;
+      break;
+    case "mist":
       icon = faCloudMeatball;
       break;
-    case "Cloudy":
+    case "scattered clouds":
       icon = faCloud;
       break;
-    case "Partly cloudy":
+    case "few clouds":
       icon = faCloudSun;
       break;
-    case "Overcast":
+    case "overcast clouds":
       icon = faSmog;
       break;
     case "Blizzard":
       icon = faMeteor;
       break;
-    case "Fog":
+    case "fog":
       icon = faSmog;
       break;
-    case "Light rain":
+    case "light rain":
       icon = faCloudRain;
       break;
-    case "Medium rain":
+    case "moderate rain":
       icon = faCloudRain;
       break;
-    case "Heavy rain":
+    case "heavy intensity rain":
       icon = faCloudShowersHeavy;
       break;
-    case "Light snow":
+    case "light snow":
       icon = faSnowflake;
       break;
-    case "Medium snow":
+    case "moderate  snow":
       icon = faSnowflake;
       break;
-    case "Heavy snow":
+    case "heavy snow":
       icon = faIcicles;
+      break;
+    case /.*thunderstorm.*/i:
+      icon = faThunderstorm;
       break;
     default:
       icon = faCloud;
