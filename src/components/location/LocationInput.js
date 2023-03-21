@@ -7,7 +7,7 @@ const LocationInput = (props) => {
       <div>
         <input
           className={"input-field"}
-          placeholder={"enter city name"}
+          placeholder={"Location"}
           onKeyDown={props.onKeyDown}
         />
       </div>

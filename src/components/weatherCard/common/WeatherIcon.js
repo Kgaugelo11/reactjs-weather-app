@@ -74,10 +74,10 @@ const WeatherIcon = (props) => {
     <div>
       <FontAwesomeIcon
         icon={getWeatherIcon(props.condition)}
-        className=".forecast-weather__icon"
+        className={"weather-icon"}
       />
     </div>
-  )
+  );
 }
 
 export default WeatherIcon

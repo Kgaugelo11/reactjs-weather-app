@@ -46,15 +46,12 @@ const WeatherWrapper = () => {
         <div>
           <LocationInput onKeyDown={keyDownHandler}/>
         </div>
-        <div className={"contain-current-graph"}>
-          <div className={"contain-current-graph_child"}>
+        <div className={"container"}>
+          <div className={"container-currentWeather"}>
             <CurrentWeatherCard location={location} weather={weather}/>
           </div>
-          <div className={"contain-current-graph_child"}>
-            <WeatherGraph/>
-          </div>
         </div>
-        <div>
+        <div className={"container-forecastWeather"}>
           <ForecastWeatherWrapper/>
         </div>
       </div>

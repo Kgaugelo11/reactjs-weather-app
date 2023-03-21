@@ -1,6 +1,6 @@
 import React from "react";
 import ForecastWeatherCard from "./ForecastWeatherCard";
-import "./ForecastWeatherWrapper.css"
+import "./ForecastWeatherWrapper.css";
 
 const ForecastWeatherWrapper = () => {
   return (

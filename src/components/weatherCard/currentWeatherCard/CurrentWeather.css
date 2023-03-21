@@ -1,0 +1,25 @@
+.current-weather {
+    display: flex;
+    align-items: center;
+}
+
+.current-weather > div {
+    flex: 1;
+}
+
+.current-weather h2 {
+    color: white;
+}
+
+.current-weather-temp {
+    font-size: 60px;
+}
+
+.weather-icon {
+    font-size: 4rem;
+    float: right;
+}
+
+.weather-icon-text {
+    font-size: 22px;
+}

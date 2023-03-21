@@ -1,18 +1,22 @@
 .container {
-    border-style: solid;
-    /*border-color: hsl(89, 43%, 51%);*/
-    width: 100%;
-}
-
-.contain-current-graph {
+    flex: 1;
     display: flex;
-    /*border: 2px solid #00ff95;*/
+    flex-direction: column;
     padding: 1%;
 }
 
-.contain-current-graph_child {
-    flex: 1;
-    border: 2px solid #4800ff;
-    margin: 0.5%;
+.container-currentWeather {
+    /*background-color: rgba(173, 216, 230, 0.35);*/
+    background-color: rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: 25%;
+    width: 50%;
 }
+
+.container-forecastWeather {
+    width: 51%;
+    margin-left: 25%;
+}
+
 
