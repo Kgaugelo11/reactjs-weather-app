@@ -37,6 +37,11 @@ const CurrentWeatherCard = (props) => {
     return Math.floor(num);
   }
 
+  const capFirstLetter = (location) => {
+    const words = location.split(" ");
+    const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+    return capitalizedWords.join(" ");
+  }
 
   return (
     <div className={"current-weather"}>
@@ -55,7 +60,7 @@ const CurrentWeatherCard = (props) => {
           />
         </div>
         <div>
-          <h2 className={"weather-icon-text"}>{props.weather.condition}</h2>
+          <h2 className={"weather-icon-text"}>{capFirstLetter(props.weather.condition)}</h2>
         </div>
       </div>
     </div>

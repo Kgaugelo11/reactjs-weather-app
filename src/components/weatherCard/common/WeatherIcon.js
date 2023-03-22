@@ -63,6 +63,9 @@ const getWeatherIcon = (condition) => {
     case /.*thunderstorm.*/i:
       icon = faThunderstorm;
       break;
+    case "broken clouds":
+      icon = faSmog;
+      break;
     default:
       icon = faCloud;
   }
