@@ -37,10 +37,12 @@ const CurrentWeatherCard = (props) => {
     return Math.floor(num);
   }
 
-  const capFirstLetter = (location) => {
-    const words = location.split(" ");
-    const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
-    return capitalizedWords.join(" ");
+  const capFirstLetter = (condition) => {
+    if(condition) {
+      const words = condition.split(" ");
+      const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+      return capitalizedWords.join(" ");
+    }
   }
 
   return (
