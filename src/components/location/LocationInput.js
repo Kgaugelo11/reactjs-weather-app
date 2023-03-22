@@ -4,13 +4,13 @@ import "./LocationInput.css"
 const LocationInput = (props) => {
   return (
     <div className={"location-input"}>
-      <div>
+
         <input
           className={"input-field"}
           placeholder={"Location"}
           onKeyDown={props.onKeyDown}
+          onBlur={props.onBlur}
         />
-      </div>
     </div>
   );
 }

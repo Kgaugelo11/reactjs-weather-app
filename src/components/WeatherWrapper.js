@@ -36,8 +36,21 @@ const WeatherWrapper = () => {
     return capitalizedWords.join(" ");
   }
 
+  const locationIsValid = (location) => {
+    return location.trim().length !== 0;
+  }
+
   const keyDownHandler = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && locationIsValid(event.target.value)) {
+      setLocation((prevState => {
+        prevState = event.target.value;
+        return prevState;
+      }));
+    }
+  }
+
+  const onBlurHandler = (event) => {
+    if (locationIsValid(event.target.value)) {
       setLocation((prevState => {
         prevState = event.target.value;
         return prevState;
@@ -49,11 +62,17 @@ const WeatherWrapper = () => {
     <form onSubmit={onSubmitHandler}>
       <div>
         <div>
-          <LocationInput onKeyDown={keyDownHandler}/>
+          <LocationInput
+            onKeyDown={keyDownHandler}
+            onBlur={onBlurHandler}
+          />
         </div>
         <div className={"container"}>
           <div className={"container-currentWeather"}>
-            <CurrentWeatherCard location={capFirstLetter(location)} weather={weather}/>
+            <CurrentWeatherCard
+              location={capFirstLetter(location)}
+              weather={weather}
+            />
           </div>
         </div>
         <div className={"container-forecastWeather"}>
