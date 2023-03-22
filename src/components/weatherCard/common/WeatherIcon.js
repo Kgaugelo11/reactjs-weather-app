@@ -1,6 +1,7 @@
-import React from "react"
+import React, {useContext} from "react"
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import "./WeatherIcon.css"
+import WeatherContext from "../../../store/weatherContext";
 import {
   faCloud,
   faSun,
@@ -72,11 +73,13 @@ const getWeatherIcon = (condition) => {
   return icon;
 };
 
-const WeatherIcon = (props) => {
+const WeatherIcon = () => {
+  const weatherContext = useContext(WeatherContext);
+
   return (
     <div>
       <FontAwesomeIcon
-        icon={getWeatherIcon(props.condition)}
+        icon={getWeatherIcon(weatherContext.weather.condition)}
         className={"weather-icon"}
       />
     </div>

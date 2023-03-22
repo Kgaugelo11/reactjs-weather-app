@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import WeatherIcon from "../common/WeatherIcon";
-import "./CurrentWeather.css"
+import "./CurrentWeatherCard.css"
+import WeatherContext from "../../../store/weatherContext";
 
-const CurrentWeatherCard = (props) => {
+const CurrentWeatherCard = () => {
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
+  const weatherContext = useContext(WeatherContext);
 
   useEffect(() => {
     setCurrentDate((prevState => {
@@ -29,7 +31,7 @@ const CurrentWeatherCard = (props) => {
 
     return () => {
       clearInterval(intervalId);
-    };
+    }
   }, []);
 
   const roundTemperatureToNearest = (temp) => {
@@ -38,7 +40,7 @@ const CurrentWeatherCard = (props) => {
   }
 
   const capFirstLetter = (condition) => {
-    if(condition) {
+    if (condition) {
       const words = condition.split(" ");
       const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
       return capitalizedWords.join(" ");
@@ -48,21 +50,21 @@ const CurrentWeatherCard = (props) => {
   return (
     <div className={"current-weather"}>
       <div>
-        <h2 className={"current-weather-temp"}>{roundTemperatureToNearest(props.weather.temperature)}<sup>°c</sup></h2>
+        <h2
+          className={"current-weather-temp"}>{roundTemperatureToNearest(weatherContext.weather.temperature)}<sup>°c</sup>
+        </h2>
       </div>
       <div>
-        <h2 className={"current-location"}>{props.location}</h2>
+        <h2 className={"current-location"}>{weatherContext.location}</h2>
         <h2 className={"current-weather-date"}>{currentDate}</h2>
         <h2 className={"current-weather-date"}>{currentTime}</h2>
       </div>
       <div className={"weather-icon"}>
         <div>
-          <WeatherIcon
-            condition={props.weather.condition}
-          />
+          <WeatherIcon/>
         </div>
         <div>
-          <h2 className={"weather-icon-text"}>{capFirstLetter(props.weather.condition)}</h2>
+          <h2 className={"weather-icon-text"}>{capFirstLetter(weatherContext.weather.condition)}</h2>
         </div>
       </div>
     </div>

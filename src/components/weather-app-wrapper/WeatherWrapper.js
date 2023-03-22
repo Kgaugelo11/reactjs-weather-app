@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
-import LocationInput from "./location/LocationInput";
+import LocationInput from "../location-input/LocationInput";
 import "./WeatherWrapper.css";
-import CurrentWeatherCard from "./weatherCard/currentWeatherCard/CurrentWeatherCard";
-import ForecastWeatherWrapper from "./weatherCard/forecastWeatherCard/ForecastWeatherWrapper";
+import CurrentWeatherCard from "../weatherCard/current-weather-card/CurrentWeatherCard";
+import ForecastWeatherWrapper from "../weatherCard/forecast-weather-card/ForecastWeatherWrapper";
+import WeatherContext from "../../store/weatherContext";
 
 const WeatherWrapper = () => {
   const [location, setLocation] = useState("Johannesburg");
@@ -43,7 +44,7 @@ const WeatherWrapper = () => {
   const keyDownHandler = (event) => {
     if (event.key === 'Enter' && locationIsValid(event.target.value)) {
       setLocation((prevState => {
-        prevState = event.target.value;
+        prevState = capFirstLetter(event.target.value);
         return prevState;
       }));
     }
@@ -52,34 +53,38 @@ const WeatherWrapper = () => {
   const onBlurHandler = (event) => {
     if (locationIsValid(event.target.value)) {
       setLocation((prevState => {
-        prevState = event.target.value;
+        prevState = capFirstLetter(event.target.value);
         return prevState;
       }));
     }
   }
 
   return (
-    <form onSubmit={onSubmitHandler}>
-      <div>
+    <WeatherContext.Provider
+      value={{
+        weather: weather,
+        location: location
+      }}
+    >
+      <form onSubmit={onSubmitHandler}>
         <div>
-          <LocationInput
-            onKeyDown={keyDownHandler}
-            onBlur={onBlurHandler}
-          />
-        </div>
-        <div className={"container"}>
-          <div className={"container-currentWeather"}>
-            <CurrentWeatherCard
-              location={capFirstLetter(location)}
-              weather={weather}
+          <div>
+            <LocationInput
+              onKeyDown={keyDownHandler}
+              onBlur={onBlurHandler}
             />
           </div>
+          <div className={"container"}>
+            <div className={"container-currentWeather"}>
+              <CurrentWeatherCard/>
+            </div>
+          </div>
+          <div className={"container-forecastWeather"}>
+            <ForecastWeatherWrapper/>
+          </div>
         </div>
-        <div className={"container-forecastWeather"}>
-          <ForecastWeatherWrapper/>
-        </div>
-      </div>
-    </form>
+      </form>
+    </WeatherContext.Provider>
   );
 }
 

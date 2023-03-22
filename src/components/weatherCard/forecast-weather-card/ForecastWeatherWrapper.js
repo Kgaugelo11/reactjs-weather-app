@@ -6,13 +6,13 @@ const ForecastWeatherWrapper = () => {
   return (
     <div className={"container"}>
       <div className={"flex-child"}>
-        <ForecastWeatherCard num={"1"}/>
+        <ForecastWeatherCard/>
       </div>
       <div className={"flex-child"}>
-        <ForecastWeatherCard num={"2"}/>
+        <ForecastWeatherCard/>
       </div>
       <div className={"flex-child"}>
-        <ForecastWeatherCard num={"3"}/>
+        <ForecastWeatherCard/>
       </div>
     </div>
   )

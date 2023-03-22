@@ -4,7 +4,6 @@ import "./LocationInput.css"
 const LocationInput = (props) => {
   return (
     <div className={"location-input"}>
-
         <input
           className={"input-field"}
           placeholder={"Location"}
