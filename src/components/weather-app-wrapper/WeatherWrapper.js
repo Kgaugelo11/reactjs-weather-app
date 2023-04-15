@@ -10,22 +10,24 @@ const WeatherWrapper = () => {
   const [weather, setWeather] = useState({});
 
   useEffect(() => {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&&appid=01b7b4f97ada9006a27f7aa192d2e0c8`;
-
-    fetch(apiUrl).then(response => response.json()).then(data => {
-      setWeather((prevState => {
-        prevState = {
-          condition: data.weather[0].description,
-          temperature: data.main.temp,
-          humidity: data.main.humidity,
-          pressure: data.main.pressure
-        };
-        return prevState
-      }));
-    }).catch(error => {
-      console.log(error);
-    });
+    fetchWeather().then();
   }, [location]);
+
+  const fetchWeather = async () => {
+    try {
+      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&&appid=01b7b4f97ada9006a27f7aa192d2e0c8`;
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      setWeather({
+        condition: data.weather[0].description,
+        temperature: data.main.temp,
+        humidity: data.main.humidity,
+        pressure: data.main.pressure
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
