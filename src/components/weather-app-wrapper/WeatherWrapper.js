@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import LocationInput from "../location-input/LocationInput";
 import "./WeatherWrapper.css";
 import CurrentWeatherCard from "../weatherCard/current-weather-card/CurrentWeatherCard";
@@ -9,11 +9,7 @@ const WeatherWrapper = () => {
   const [location, setLocation] = useState("Johannesburg");
   const [weather, setWeather] = useState({});
 
-  useEffect(() => {
-    fetchWeather().then();
-  }, [location]);
-
-  const fetchWeather = async () => {
+  const fetchWeather = useCallback(async () => {
     try {
       const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&&appid=01b7b4f97ada9006a27f7aa192d2e0c8`;
       const response = await fetch(apiUrl);
@@ -27,7 +23,11 @@ const WeatherWrapper = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [location]);
+
+  useEffect(() => {
+    fetchWeather().then();
+  }, [fetchWeather]);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
